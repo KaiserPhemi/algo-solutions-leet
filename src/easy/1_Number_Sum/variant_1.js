@@ -33,19 +33,21 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
  * @author Oluwafemi Akinwa <kaiser.phemi@protonmail.ch>
  */
 const twoSum = (nums, targetSum) => {
+  // get array length
+  const arrLen = nums.length;
+
   //create a map
   const indexHash = {};
 
   //loop through array
-  for (const curr of nums) {
-    let targetNum = targetSum - curr;
+  for (let i = 0; i < arrLen; i++) {
+    let targetNum = targetSum - nums[i];
     if (targetNum in indexHash) {
-      return [nums.indexOf(curr), nums.indexOf(targetNum)];
+      return [i, indexHash[targetNum]].sort();
     } else {
-      indexHash[curr] = true;
+      indexHash[nums[i]] = i;
     }
   }
-  return [];
 };
 
 module.exports = twoSum;
